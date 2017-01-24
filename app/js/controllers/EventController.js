@@ -4,6 +4,10 @@ eventsApp.controller('EventController', EventController);
 
 function EventController($scope)
 {
+    $scope.snippet = '<span style="color:red">hi there</span>';
+    $scope.boolValue = false;
+    $scope.myStyle = {color:'red'};
+    $scope.myClass = "blue";
     $scope.event = {
         name: 'Angular Boot Camp',
         date: '1/1/2013',
@@ -28,7 +32,7 @@ function EventController($scope)
                 creatorName: 'John Doe',
                 duration: '30 mins',
                 level: 'Introductory',
-                abstract: 'This session will take a closer loot at scopes. Learn what they do, how they do it and how to get them to do it for you.',
+                abstract: 'This session will take a closer look at scopes. Learn what they do, how they do it and how to get them to do it for you.',
                 upVoteCount: 0
             },
             {
