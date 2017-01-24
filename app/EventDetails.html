@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body ng-cloak>
+<body>
 <div class="container">
     <div class="navbar">
         <div class="navbar-inner">
@@ -19,18 +19,9 @@
         <img ng-src="{{event.imageUrl}}" alt="{{event.name}}" />
         <div class="row">
             <div class="spann11">
-                <h2 ng-class="myClass" ng-bind-template="{{event.name}} {{event.date}}"></h2>
+                <h2>{{event.name}}</h2>
             </div>
         </div>
-
-        <button class="btn" ng-disabled="buttonDisabled">Disabled</button>
-
-        <div ng-non-bindable>{{1 + 2}}</div>
-
-        <div ng-bind-html="snippet">some title</div>
-
-        <h2 ng-show="boolValue">Show This</h2>
-        <h2 ng-hide="boolValue">Hide This</h2>
         <div class="row">
             <div class="span3">
                 <div><strong>Date: {{event.date}}</strong></div>
@@ -44,6 +35,8 @@
                 </address>
             </div>
         </div>
+
+        {{ Math.min(2,3) }}
         <hr />
 
         <h3>Sessions</h3>
