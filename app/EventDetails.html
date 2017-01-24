@@ -19,13 +19,14 @@
         <img ng-src="{{event.imageUrl}}" alt="{{event.name}}" />
         <div class="row">
             <div class="spann11">
-                <h2>{{event.name}}</h2>
+                <h2>{{event.name | uppercase}}</h2>
             </div>
         </div>
         <div class="row">
             <div class="span3">
-                <div><strong>Date: {{event.date}}</strong></div>
+                <div><strong>Date: {{event.date | date:'mediumDate' }}</strong></div>
                 <div><strong>Time: {{event.time}}</strong></div>
+                <div><strong>Price: {{ 34 | currency }}</strong></div>
             </div>
             <div class="span4">
                 <address>
@@ -36,12 +37,29 @@
             </div>
         </div>
 
-        {{ Math.min(2,3) }}
+        <div>
+            {{ 3 | number:2 }}
+        </div>
+        <div>
+            {{ {a:3, b:'hi', c:{aa:35} } | json }}
+        </div>
         <hr />
 
         <h3>Sessions</h3>
+        Order By:
+        <select ng-model="sortorder" class="input-small">
+            <option selected value="name">Name</option>
+            <option value="-upVoteCount">Votes</option>
+        </select>
+        Show:
+        <select ng-model="query.level" class="input-medium">
+            <option selected value="">All</option>
+            <option value="introductory">Introductory</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
         <ul class="thumbnails">
-            <li ng-repeat="session in event.sessions">
+            <li ng-repeat="session in event.sessions | orderBy:sortorder | limitTo:2 | filter:query">
                 <div class="row session">
                     <div class="span0 well votingWidget">
                         <div class="votingButton" ng-click="upVoteSession(session)">
