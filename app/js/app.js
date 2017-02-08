@@ -20,4 +20,5 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngCookies', 'ngRoute
                 controller: 'EventController'
             }
         );
+        $routeProvider.otherwise({redirectTo: '/events'});
     });
