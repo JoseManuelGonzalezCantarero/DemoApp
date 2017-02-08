@@ -7,5 +7,17 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngCookies', 'ngRoute
                 templateUrl: 'templates/NewEvent.html',
                 controller: 'EditEventController'
             }
-        )
+        );
+        $routeProvider.when('/events',
+            {
+                templateUrl: 'templates/EventList.html',
+                controller: 'EventListController'
+            }
+        );
+        $routeProvider.when('/event/:eventId',
+            {
+                templateUrl: 'templates/EventDetails.html',
+                controller: 'EventController'
+            }
+        );
     });
