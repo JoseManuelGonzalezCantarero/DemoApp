@@ -7,7 +7,6 @@ eventsApp.factory('eventData', function ($resource) {
         },
         save: function (event)
         {
-            event.id = 999;
             return resource.save(event);
         }
    };

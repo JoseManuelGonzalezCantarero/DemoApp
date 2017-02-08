@@ -2,7 +2,7 @@
 
 eventsApp.controller('EventController', EventController);
 
-function EventController($scope, eventData, $anchorScroll)
+function EventController($scope, eventData, $anchorScroll, $cookieStore)
 {
     $scope.sortorder = 'name';
     eventData.getEvent()
@@ -11,12 +11,21 @@ function EventController($scope, eventData, $anchorScroll)
         .catch(function (response) { console.log(response);});
     
     $scope.upVoteSession = function (session) {
-        session.upVoteCount++;
+        if($cookieStore.get('upVote' + session.id) === undefined)
+        {
+            $cookieStore.put('upVote' + session.id, session);
+            session.upVoteCount++;
+        }
     };
 
     $scope.downVoteSession = function (session) {
-        session.upVoteCount--;
-    }
+        if($cookieStore.get('downVote' + session.id) === undefined)
+        {
+            $cookieStore.put('downVote' + session.id, session);
+            session.upVoteCount--;
+        }
+
+    };
 
     $scope.scrollToSession = function ()
     {
