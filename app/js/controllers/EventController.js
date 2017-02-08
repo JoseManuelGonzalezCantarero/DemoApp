@@ -2,10 +2,10 @@
 
 eventsApp.controller('EventController', EventController);
 
-function EventController($scope, eventData, $anchorScroll, $cookieStore)
+function EventController($scope, eventData, $cookieStore, $routeParams)
 {
     $scope.sortorder = 'name';
-    eventData.getEvent()
+    eventData.getEvent($routeParams.eventId)
         .$promise
         .then(function(event) {$scope.event = event;})
         .catch(function (response) { console.log(response);});
@@ -26,9 +26,4 @@ function EventController($scope, eventData, $anchorScroll, $cookieStore)
         }
 
     };
-
-    $scope.scrollToSession = function ()
-    {
-        $anchorScroll();
-    }
 }
