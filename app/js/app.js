@@ -1,7 +1,7 @@
 'use strict';
 
 var eventsApp = angular.module('eventsApp', ['ngResource', 'ngCookies', 'ngRoute'])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/newEvent',
             {
                 templateUrl: 'templates/NewEvent.html',
@@ -21,4 +21,6 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngCookies', 'ngRoute
             }
         );
         $routeProvider.otherwise({redirectTo: '/events'});
+
+        $locationProvider.html5Mode(true);
     });
