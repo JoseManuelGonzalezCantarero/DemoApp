@@ -11,7 +11,12 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngCookies', 'ngRoute
         $routeProvider.when('/events',
             {
                 templateUrl: 'templates/EventList.html',
-                controller: 'EventListController'
+                controller: 'EventListController',
+                resolve: {
+                    events: function ($route, eventData) {
+                        return eventData.getAllEvents();
+                    }
+                }
             }
         );
         $routeProvider.when('/event/:eventId',
@@ -23,6 +28,17 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngCookies', 'ngRoute
                         return eventData.getEvent($route.current.pathParams.eventId).$promise;
                     }
                 }
+            }
+        );
+        $routeProvider.when('/editProfile',
+            {
+                templateUrl: 'templates/EditProfile.html',
+                controller: 'EditProfileController'
+            }
+        );
+        $routeProvider.when('/about',
+            {
+                template: '<h1>This is the about page</h1>'
             }
         );
         $routeProvider.otherwise({redirectTo: '/events'});

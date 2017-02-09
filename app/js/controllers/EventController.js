@@ -2,7 +2,7 @@
 
 eventsApp.controller('EventController', EventController);
 
-function EventController($scope, eventData, $cookieStore, $routeParams, $route)
+function EventController($scope, $cookieStore, $route)
 {
     $scope.sortorder = 'name';
     $scope.event = $route.current.locals.event;

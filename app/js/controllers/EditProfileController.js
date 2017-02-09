@@ -20,9 +20,9 @@ function EditProfileController($scope, gravatarUrlBuilder, userData)
     $scope.getGravatarUrl = function(email)
     {
         return gravatarUrlBuilder.buildGravatarUrl(email);
-    }
+    };
 
     $scope.cancelEdit = function () {
-        window.location = "EventDetails.html";
-    }
+        window.location = "/events";
+    };
 }
