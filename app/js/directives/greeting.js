@@ -1,6 +1,8 @@
 'use strict';
 
 eventsApp.directive('greeting', greeting);
+eventsApp.directive('finnish', finnish);
+eventsApp.directive('hindi', hindi);
 
 function greeting()
 {
@@ -8,15 +10,36 @@ function greeting()
         restrict: 'E',
         replace: true,
         template: "<button class='btn' ng-click='sayHello()'>Say Hello</button>",
-        controller: '@',
-        name: 'ctrl'
+        controller: function ($scope) {
+            var greetings = ['hello'];
+            $scope.sayHello = function () {
+                alert(greetings.join());
+            };
+            this.addGreeting = function (greeting) {
+                greetings.push(greeting);
+            }
+        }
     };
 }
 
-eventsApp.controller('GreetingController', GreetingController);
+function finnish()
+{
+    return{
+        restrict: 'A',
+        require: 'greeting',
+        link: function (scope, element, attrs, controller) {
+            controller.addGreeting('hei');
+        }
+    }
+}
 
-function GreetingController($scope) {
-    $scope.sayHello = function () {
-        alert('Hello');
+function hindi()
+{
+    return{
+        restrict: 'A',
+        require: 'greeting',
+        link: function (scope, element, attrs, controller) {
+            controller.addGreeting('namasté');
+        }
     }
 }
